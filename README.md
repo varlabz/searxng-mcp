@@ -1,75 +1,81 @@
-# SearxNG Search with MCP
+# SearXNG MCP
 
-A tool for performing searches using SearxNG, with both CLI and Model Context Protocol (MCP) interfaces.
+A Model Context Protocol (MCP) server and CLI tool for performing web searches using SearxNG.
 
-## Installation
+## Quick Start
 
-1. Clone this repository
-2. Install the package:
-```bash
-pip install -e .
-```
-
-## Usage
-
-### Command Line Interface
+Run without installation using `uvx`:
 
 ```bash
-searxng-cli "your search query" --host "http://your-searx-instance" [--engines "engine1,engine2"]
+# CLI search
+uvx --from git+https://github.com/varlabz/searxng-mcp searxng-cli "your search query"
+
+# MCP server
+uvx --from git+https://github.com/varlabz/searxng-mcp searxng-mcp
 ```
 
-#### CLI Arguments
+### Creating Shell Alias
 
-- `query`: Search query (positional argument)
-- `--host`: SearxNG host URL (default: http://localhost:8888)
-- `--engines`: Comma-separated list of search engines to use (optional)
-- `--num-results`: Number of results to return (optional, default: 10)
-- `--categories`: Comma-separated list of categories to use (optional)
-
-#### CLI Example
+For easier usage, create a shell alias to avoid typing the full `uvx` command:
 
 ```bash
-searxng-cli "python programming" --host "http://localhost:8888" --engines "google,duckduckgo"
+# Add to your ~/.bashrc, ~/.zshrc, or ~/.profile
+alias searxng-cli='uvx --from git+https://github.com/varlabz/searxng-mcp searxng-cli'
+or
+alias sx='uvx --from git+https://github.com/varlabz/searxng-mcp searxng-cli --engines "google,duckduckgo" '
+
+# Reload your shell configuration
+source ~/.bashrc  # or ~/.zshrc
 ```
 
-### MCP Server
-
-This project includes an MCP server that allows AI models to access SearxNG search functionality.
-
-#### Running the MCP Server
-
-You can run the MCP server directly:
+After setting up the alias, you can use it directly:
 
 ```bash
-searxng-mcp
+searxng-cli "python programming" --engines "google,duckduckgo"
+# or
+sx "python programming" 
 ```
 
-Or use it with MCP development tools:
+**Options:**
+- `--host`: SearxNG host URL (default: `http://localhost:8888`)
+- `--engines`: Comma-separated search engines (e.g., `google,duckduckgo`)
+- `--num-results`: Number of results (default: 10)
+- `--categories`: Search categories
 
+**Example:**
 ```bash
-mcp dev searxng-mcp
+# Full command
+uvx --from git+https://github.com/varlabz/searxng-mcp searxng-cli "python programming" --engines "google,duckduckgo"
+
+# Using alias
+sx "python programming" --engines "brave"
 ```
 
-#### MCP Features
+## MCP Server
 
-- `search` tool: Search the web via SearxNG
-- Resources: Access information about SearxNG categories and engines
-- Structured output: Results are returned in a well-structured format for easy parsing
+Provides search functionality to AI models through the Model Context Protocol.
 
-## Requirements
+**Configuration:**
 
-- Python 3.8+
-- langchain-community
-- mcp
+Add this to your MCP client configuration for VS Code or other clients (see client configuration):
 
-## Configuration
-
-Set the `SEARX_HOST` environment variable to specify your SearxNG instance:
-
-```bash
-export SEARX_HOST=http://localhost:8888
+```json
+{
+  "mcp": {
+    "servers": {
+      "searxng": {
+        "command": "uvx",
+        "args": ["--from", "git+https://github.com/varlabz/searxng-mcp", "searxng-mcp"]
+        "env": {
+          "SEARX_HOST": "http://localhost:8888"
+        }
+      }
+    }
+  }
+}
 ```
 
-## Notes
-
-Make sure your SearxNG instance is properly set up and accessible at the provided host URL.
+**Features:**
+- `search` tool for web searches
+- Access to SearxNG categories and engines
+- Structured JSON output

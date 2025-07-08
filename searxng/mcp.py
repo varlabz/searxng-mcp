@@ -150,9 +150,7 @@ Make sure the SearxNG instance is running and accessible at the provided host UR
 def search_prompt(query: str = "climate change") -> str:
     """Create a prompt to help with searching"""
     return f"""Please help me find information about: {query}
-    
 Use the search tool to look for relevant information, and provide a summary of the findings.
-
 You may want to try different search engines or categories if the initial results aren't helpful.
 """
 
