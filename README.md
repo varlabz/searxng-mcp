@@ -1,38 +1,74 @@
-# SearxNG Search CLI
+# SearxNG Search with MCP
 
-A simple command-line interface for performing searches using SearxNG.
+A tool for performing searches using SearxNG, with both CLI and Model Context Protocol (MCP) interfaces.
 
 ## Installation
 
 1. Clone this repository
-2. Install dependencies:
-```
-pip install -r requirements.txt
+2. Install the package:
+```bash
+pip install -e .
 ```
 
 ## Usage
 
-```
-python main.py --host "http://your-searx-instance" --query "your search query" [--engines "engine1,engine2"]
+### Command Line Interface
+
+```bash
+searxng-cli "your search query" --host "http://your-searx-instance" [--engines "engine1,engine2"]
 ```
 
-### Arguments
+#### CLI Arguments
 
-- `--host`: SearxNG host URL (required)
-- `--query`: Search query (required)
+- `query`: Search query (positional argument)
+- `--host`: SearxNG host URL (default: http://localhost:8888)
 - `--engines`: Comma-separated list of search engines to use (optional)
+- `--num-results`: Number of results to return (optional, default: 10)
+- `--categories`: Comma-separated list of categories to use (optional)
 
-### Example
+#### CLI Example
 
+```bash
+searxng-cli "python programming" --host "http://localhost:8888" --engines "google,duckduckgo"
 ```
-python main.py --host "http://localhost:8888" --query "python programming" --engines "google,duckduckgo"
+
+### MCP Server
+
+This project includes an MCP server that allows AI models to access SearxNG search functionality.
+
+#### Running the MCP Server
+
+You can run the MCP server directly:
+
+```bash
+searxng-mcp
 ```
+
+Or use it with MCP development tools:
+
+```bash
+mcp dev searxng-mcp
+```
+
+#### MCP Features
+
+- `search` tool: Search the web via SearxNG
+- Resources: Access information about SearxNG categories and engines
+- Structured output: Results are returned in a well-structured format for easy parsing
 
 ## Requirements
 
-- Python 3.7+
+- Python 3.8+
 - langchain-community
-- argparse
+- mcp
+
+## Configuration
+
+Set the `SEARX_HOST` environment variable to specify your SearxNG instance:
+
+```bash
+export SEARX_HOST=http://localhost:8888
+```
 
 ## Notes
 

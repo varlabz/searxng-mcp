@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "searxng-mcp"
+version = "0.1.0"
+authors = [
+  { name="varlabz", email="varlabz@umdoze.com" },
+]
+description = "A SearxNG MCP server and CLI"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "langchain-community>=0.3.27",
+    "mcp>=1.10.0"
+]
+
+[project.scripts]
+searxng-cli = "searxng.cli:main"
+searxng-mcp = "searxng.mcp:main"

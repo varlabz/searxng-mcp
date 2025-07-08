@@ -1,2 +1,0 @@
-langchain-community>=0.3.27
-argparse>=1.4.0
