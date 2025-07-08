@@ -53,3 +53,51 @@ async def main():
 
 if __name__ == "__main__":
     sys.exit(asyncio.run(main()))
+
+# Categories:
+# general, images, videos, news, map, music, science, social media
+
+# Common engines available in SearxNG:
+# Web Search Engines:
+#   google, bing, duckduckgo, startpage, searx, yandex, yahoo, brave, kagi
+#   qwant, mojeek, yep, presearch, metager, swisscows, peertube
+#
+# News Engines:
+#   google news, bing news, yahoo news, reuters, associated press, bbc
+#   cnn, guardian, npr, reddit, hackernews, lobste.rs
+#
+# Image Engines:
+#   google images, bing images, flickr, unsplash, pixabay, deviantart
+#   wikimedia commons, 1x, 500px
+#
+# Video Engines:
+#   youtube, vimeo, dailymotion, peertube, invidious, bilibili
+#
+# Map Engines:
+#   openstreetmap, google maps, bing maps, wikimapia, fdroid
+#
+# Music Engines:
+#   soundcloud, spotify, bandcamp, genius, musixmatch, radio browser
+#
+# Science/Academic:
+#   arxiv, pubmed, crossref, semantic scholar, google scholar, microsoft academic
+#   internet archive, library genesis, anna's archive
+#
+# IT/Programming:
+#   github, gitlab, stackoverflow, codeberg, pypi, npm, dockerhub
+#   arch linux wiki, gentoo wiki, askubuntu, superuser
+#
+# Social Media:
+#   mastodon, lemmy, reddit, 4chan, tiktok, imgur
+#
+# Dictionary/Reference:
+#   wiktionary, wikipedia, urban dictionary, wordnik, etymonline
+#
+# Files/Torrents:
+#   piratebay, 1337x, nyaa, eztv, torrentz, solidtorrents
+#
+# Shopping:
+#   amazon, ebay, google shopping, bing shopping, wikidata
+#
+# Note: Available engines depend on your SearxNG instance configuration.
+# Use the preferences page of your SearxNG instance to see which engines are enabled.    
