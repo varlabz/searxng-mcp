@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
 """
-MCP Server for SearxNG Search
+MCP Server for SearXNG Search
 
-This module implements a Model Context Protocol (MCP) server that provides access to SearxNG search functionality.
+This module implements a Model Context Protocol (MCP) server that provides access to SearXNG search functionality.
 """
 
 import os
@@ -14,20 +13,20 @@ from .search import searx_search
 
 # Create an MCP server
 mcp = FastMCP(
-    "SearxNG Search", 
-    description="Search the web using SearxNG instances through MCP",
+    "SearXNG Search",
+    description="Search the web using SearXNG instances through MCP",
     dependencies=["langchain-community", "mcp"]
 )
 
 # Define models for structured output
 class SearchResult(BaseModel):
-    """A single search result from SearxNG"""
+    """A single search result from SearXNG"""
     title: str = Field(description="The title of the search result")
     url: str = Field(description="The URL of the search result")
     content: str = Field(description="The snippet or content of the search result")
 
 class SearchResults(BaseModel):
-    """A collection of search results from SearxNG"""
+    """A collection of search results from SearXNG"""
     results: List[SearchResult] = Field(description="List of search results")
     query: str = Field(description="The search query that was executed")
     total_results: int = Field(description="The number of results returned")
@@ -41,8 +40,8 @@ async def search(
     ctx: Context = None
 ) -> SearchResults:
     """
-    Search the web using SearxNG.
-    
+    Search the web using SearXNG.
+
     Args:
         query: The search query
         num_results: Number of results to return (default: 10)
@@ -123,14 +122,14 @@ def get_engines() -> str:
 
 @mcp.resource("searx-info://")
 def get_info() -> str:
-    """Get information about SearxNG and how to use it"""
-    return """# SearxNG Search
+    """Get information about SearXNG and how to use it"""
+    return """# SearXNG Search
 
-SearxNG is a privacy-respecting, hackable metasearch engine. It aggregates results from various search engines while respecting your privacy.
+SearXNG is a privacy-respecting, hackable metasearch engine. It aggregates results from various search engines while respecting your privacy.
 
 ## How to use this MCP server
 
-1. Use the `search` tool to perform web searches through SearxNG
+1. Use the `search` tool to perform web searches through SearXNG
 2. Customize your search with engines and categories parameters
 3. Browse available categories with the `searx-categories://` resource
 4. Browse common engines with the `searx-engines://` resource

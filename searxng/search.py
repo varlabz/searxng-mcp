@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
 """
-SearxNG Search Functions
+SearXNG Search Functions
 
-This module provides async search functionality using SearxNG instances.
+This module provides async search functionality using SearXNG instances.
 """
 
 import sys
@@ -21,7 +20,7 @@ async def searx_search(
     Perform a search using SearxSearchWrapper.
 
     Args:
-        searx_host: The Searx instance host URL
+        searx_host: The SearXNG instance host URL
         query: The search query
         num_results: The number of results to return (default: 10)
         engines: List of engines to use (optional)

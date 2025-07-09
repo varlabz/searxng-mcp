@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-SearxNG CLI
+SearXNG CLI
 
-Command line interface for searching using SearxNG instances.
+Command line interface for searching using SearXNG instances.
 """
 
 import argparse
@@ -14,7 +14,7 @@ from .search import searx_search
 def parse_arguments():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(
-        description="Search using SearxNG",
+        description="Search using SearXNG",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -56,8 +56,6 @@ Examples:
 async def main_async():
     """Main entry point for the CLI."""
     args = parse_arguments()
-    
-    # Parse optional arguments
     engines = [engine.strip() for engine in args.engines.split(",")] if args.engines else None
     categories = [category.strip() for category in args.categories.split(",")] if args.categories else None
     query = " ".join(args.query)
