@@ -36,6 +36,9 @@ async def searx_search(
             categories=categories
         )
         results = await searx.aresults(query=query, num_results=num_results)
+        if len(results) == 1 and "Result" in results[0]:    # special case for single result
+            return []
+        
         return [
             {
                 "title": r.get("title", ""), 
