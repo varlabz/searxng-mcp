@@ -40,17 +40,9 @@ async def search(
     ctx: Context = None
 ) -> SearchResults:
     """
-    Search the web using SearXNG.
-
-    Args:
-        query: The search query
-        num_results: Number of results to return (default: 10)
-        engines: Comma-separated list of engines (e.g., "google,bing,duckduckgo")
-        categories: Comma-separated list of categories (e.g., "general,news,science")
-        
-    Returns:
-        Structured search results with title, URL, and content snippet
+    Search the web using SearXNG.   
     """
+
     searx_host = os.getenv("SEARX_HOST", "http://localhost:8888")
       
     # Log the search query
