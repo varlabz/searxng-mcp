@@ -14,8 +14,6 @@ from .search import searx_search
 # Create an MCP server
 mcp = FastMCP(
     "SearXNG Search",
-    description="Search the web using SearXNG instances through MCP",
-    dependencies=["langchain-community", "mcp"]
 )
 
 # Define models for structured output
