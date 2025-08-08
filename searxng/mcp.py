@@ -5,7 +5,7 @@ This module implements a Model Context Protocol (MCP) server that provides acces
 """
 
 import os
-from typing import List, Optional
+from typing import List, Optional, Literal
 from pydantic import BaseModel, Field
 from mcp.server.fastmcp import FastMCP, Context
 
@@ -35,7 +35,8 @@ async def search(
     num_results: int = 10,
     engines: Optional[str] = None,
     categories: Optional[str] = None,
-    ctx: Context = None
+    time_range: Optional[Literal["day", "month", "year"]] = None,
+    ctx: Optional[Context] = None
 ) -> SearchResults:
     """
     Search the web using SearXNG.   
@@ -61,7 +62,8 @@ async def search(
         query=query,
         num_results=num_results,
         engines=engines_list,
-        categories=categories_list
+        categories=categories_list,
+        time_range=time_range,
     )
     
     if ctx:
@@ -116,6 +118,8 @@ SearXNG is a privacy-respecting, hackable metasearch engine. It aggregates resul
 - Basic search: `search(query="climate change")`
 - Search with specific engines: `search(query="python tutorial", engines="google,stackoverflow,github")`
 - Search news only: `search(query="latest developments", categories="news")`
+- Search recent results: `search(query="breaking news", time_range="day")`
+- Search monthly trends: `search(query="market analysis", time_range="month")`
 
 ## Note
 
