@@ -82,32 +82,19 @@ async def search(
 @mcp.resource("searx-categories://")
 def get_categories() -> str:
     """Get a list of available SearxNG search categories"""
-    categories = [
-        "general", "images", "videos", "news", "map", "music", 
-        "science", "social media", "files"
-    ]
-    return "\n".join([f"- {category}" for category in categories])
+    from .search import CATEGORIES
+    return "\n".join([f"- {category}" for category in CATEGORIES])
 
 @mcp.resource("searx-engines://")
 def get_engines() -> str:
     """Get a list of common SearxNG search engines"""
-    engines = {
-        "Web Search": ["google", "bing", "duckduckgo", "startpage", "searx", "yandex", "yahoo", "brave"],
-        "News": ["google news", "bing news", "yahoo news", "reuters", "bbc", "cnn", "guardian", "reddit"],
-        "Images": ["google images", "bing images", "flickr", "unsplash", "pixabay"],
-        "Videos": ["youtube", "vimeo", "dailymotion", "peertube"],
-        "Science": ["arxiv", "pubmed", "crossref", "semantic scholar", "google scholar"],
-        "Social Media": ["mastodon", "lemmy", "reddit", "imgur"],
-        "IT/Programming": ["github", "gitlab", "stackoverflow", "pypi", "npm"]
-    }
-    
+    from .search import ENGINES
     result = []
-    for category, engine_list in engines.items():
+    for category, engine_list in ENGINES.items():
         result.append(f"## {category}")
         for engine in engine_list:
             result.append(f"- {engine}")
         result.append("")
-    
     return "\n".join(result)
 
 @mcp.resource("searx-info://")

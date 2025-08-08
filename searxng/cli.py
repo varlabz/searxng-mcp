@@ -13,14 +13,24 @@ from .search import searx_search
 
 def parse_arguments():
     """Parse command line arguments."""
+    from .search import CATEGORIES, ENGINES
+    engines_by_category = '\n'.join(
+        f"  {cat}: {', '.join(engines)}" for cat, engines in ENGINES.items()
+    )
     parser = argparse.ArgumentParser(
         description="Search using SearXNG",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
+        epilog=f"""
 Examples:
   %(prog)s "python programming"
   %(prog)s "climate change" --engines "google,duckduckgo"
   %(prog)s "latest news" --categories "news" --num-results 5
+
+Available categories:
+  {', '.join(CATEGORIES)}
+
+Engines by category:
+{engines_by_category}
         """
     )
     parser.add_argument(
@@ -46,9 +56,15 @@ Examples:
         help="Comma-separated list of search engines to use"
     )
     parser.add_argument(
-        "--categories", 
-        type=str, 
+        "--categories",
+        type=str,
         help="Comma-separated list of categories to use"
+    )
+    parser.add_argument(
+        "--time-range",
+        type=str,
+        choices=["day", "month", "year"],
+        help="Time range for search results (optional, allowed: day, month, year)"
     )
     return parser.parse_args()
 
@@ -69,11 +85,12 @@ async def main_async():
     print("-" * 50)
     
     results = await searx_search(
-        searx_host=args.host, 
-        query=query, 
-        num_results=args.num_results, 
-        engines=engines, 
-        categories=categories
+        searx_host=args.host,
+        query=query,
+        num_results=args.num_results,
+        engines=engines,
+        categories=categories,
+        time_range=args.time_range,
     )
     
     if not results:
