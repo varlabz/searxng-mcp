@@ -38,9 +38,7 @@ async def search(
     time_range: Optional[Literal["day", "month", "year"]] = None,
     ctx: Optional[Context] = None
 ) -> SearchResults:
-    """
-    Search the web using SearXNG.   
-    """
+    """Search the web using SearXNG."""
 
     searx_host = os.getenv("SEARX_HOST", "http://localhost:8888")
       
