@@ -5,7 +5,7 @@ This module provides async search functionality using SearXNG instances.
 """
 
 import sys
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Literal
 from langchain_community.utilities import SearxSearchWrapper
 
 # Common SearXNG categories
@@ -48,29 +48,27 @@ ENGINES = {
     ]
 }
 
-TIME_RANGES = {"day", "month", "year"}
-
 async def searx_search(
     searx_host: str,
     query: str,
     num_results: int = 10,
     engines: Optional[List[str]] = [],
     categories: Optional[List[str]] = [],
-    time_range: Optional[str] = None
+    time_range: Optional[Literal["day", "month", "year"]] = None
 ) -> List[Dict[str, str]]:
     """
-    Perform a search using SearxSearchWrapper.
+    Perform async search using SearXNG.
 
     Args:
-        searx_host: The SearXNG instance host URL
-        query: The search query
-        num_results: The number of results to return (default: 10)
-        engines: List of engines to use (optional)
-        categories: List of categories to use (optional)
-        time_range: Time range for search results (optional, e.g. 'day', 'month', 'year')
+        searx_host: SearXNG instance URL
+        query: Search query
+        num_results: Number of results (default: 10)
+        engines: Specific engines to use
+        categories: Specific categories to search
+        time_range: Time filter ('day', 'month', or 'year')
 
     Returns:
-        List of dictionaries containing search results with title, url, and content
+        List of search results with title, url, and content
     """
     try:
         searx = SearxSearchWrapper(
@@ -78,14 +76,15 @@ async def searx_search(
             engines=engines,
             categories=categories
         )
-        aresults_kwargs = {
-            "query": query,
-            "num_results": num_results,
-        }
+        
+        search_params = {"query": query, "num_results": num_results}
         if time_range:
-            aresults_kwargs["time_range"] = time_range
-        results = await searx.aresults(**aresults_kwargs)
-        if len(results) == 1 and "Result" in results[0]:    # special case for single result
+            search_params["time_range"] = time_range
+           
+        results = await searx.aresults(**search_params)
+        
+        # Handle empty result case
+        if len(results) == 1 and "Result" in results[0]:
             return []
 
         return [
@@ -97,5 +96,5 @@ async def searx_search(
             for r in results
         ]
     except Exception as e:
-        print(f"Error performing search: {str(e)}", file=sys.stderr)
+        print(f"Search error: {e}", file=sys.stderr)
         return []
