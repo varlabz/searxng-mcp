@@ -81,10 +81,11 @@ source ~/.bashrc  # or ~/.zshrc
 - `--engines`: Comma-separated list of search engines to use.
 - `--categories`: Comma-separated list of search categories to use.
 - `--time-range`: Time range for search results (day, month, or year).
+- `--json`: Output results in JSON format.
 
 ```bash
 $ sx --help
-usage: cli [-h] [--host HOST] [--num-results NUM_RESULTS] [--engines ENGINES] [--categories CATEGORIES] [--time-range {day,month,year}] query [query ...]
+usage: cli [-h] [--host HOST] [--num-results NUM_RESULTS] [--engines ENGINES] [--categories CATEGORIES] [--time-range {day,month,year}] [--json] query [query ...]
 
 Search using SearXNG
 
@@ -101,6 +102,7 @@ options:
                         Comma-separated list of categories to use
   --time-range {day,month,year}
                         Time range for search results (optional, allowed: day, month, year)
+  --json                Output results in JSON format
 
 Examples:
   cli "python programming"

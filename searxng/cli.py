@@ -80,15 +80,7 @@ async def main_async():
     engines = [engine.strip() for engine in args.engines.split(",")] if args.engines else None
     categories = [category.strip() for category in args.categories.split(",")] if args.categories else None
     query = " ".join(args.query)
-    
-    # Perform search
-    print(f"Searching for: {query}")
-    if engines:
-        print(f"Using engines: {', '.join(engines)}")
-    if categories:
-        print(f"Using categories: {', '.join(categories)}")
-    print("-" * 50)
-    
+   
     results = await searx_search(
         searx_host=args.host,
         query=query,
