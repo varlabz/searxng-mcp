@@ -66,6 +66,11 @@ Engines by category:
         choices=["day", "month", "year"],
         help="Time range for search results (optional, allowed: day, month, year)"
     )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Output results in JSON format"
+    )
     return parser.parse_args()
 
 
@@ -94,18 +99,25 @@ async def main_async():
     )
     
     if not results:
-        print("No results found.")
+        if args.json:
+            print("[]")
+        else:
+            print("No results found.")
         return 1
     
     # Display results
-    for i, result in enumerate(results, 1):
-        print(f"{i}. {result['title']}")
-        print(f"   URL: {result['url']}")
-        if result['content']:
-            print(f"   {result['content']}")
-        print()
-    
-    print(f"Found {len(results)} results.")
+    if args.json:
+        import json
+        print(json.dumps(results, indent=2))
+    else:
+        for i, result in enumerate(results, 1):
+            print(f"{i}. {result['title']}")
+            print(f"   URL: {result['url']}")
+            if result['content']:
+                print(f"   {result['content']}")
+            print()
+        
+        print(f"Found {len(results)} results.")
     return 0
 
 
