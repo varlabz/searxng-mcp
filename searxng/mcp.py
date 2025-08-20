@@ -9,7 +9,7 @@ from typing import List, Optional, Literal
 from pydantic import BaseModel, Field
 from mcp.server.fastmcp import FastMCP, Context
 
-from .search import searx_search
+from search import searx_search
 
 # Create an MCP server
 mcp = FastMCP(

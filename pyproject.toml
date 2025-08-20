@@ -16,8 +16,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "langchain-community>=0.3.27",
-    "mcp>=1.10.0"
+    "mcp[cli]>=1.10.0"
 ]
 
 [project.urls]
