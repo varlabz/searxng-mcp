@@ -6,7 +6,7 @@ This module provides async search functionality using SearXNG instances.
 
 import sys
 from typing import List, Dict, Optional, Literal
-from searx_search import SearxSearchWrapper
+from .searx_search import SearxSearchWrapper
 
 # Common SearXNG categories
 CATEGORIES = [

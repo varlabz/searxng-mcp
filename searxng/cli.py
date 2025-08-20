@@ -8,12 +8,12 @@ Command line interface for searching using SearXNG instances.
 import argparse
 import sys
 import asyncio
-from search import searx_search
+from .search import searx_search
 
 
 def parse_arguments():
     """Parse command line arguments."""
-    from search import CATEGORIES, ENGINES
+    from .search import CATEGORIES, ENGINES
     engines_by_category = '\n'.join(
         f"  {cat}: {', '.join(engines)}" for cat, engines in ENGINES.items()
     )
