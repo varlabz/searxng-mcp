@@ -4,16 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "searxng-mcp"
-version = "0.2.3"
+dynamic = ["version"]
 authors = [
   { name="varlabz", email="varlabz@umdoze.com" },
 ]
-description = "A SearxNG MCP server and CLI"
+description = "A tool for performing searches using SearXNG, with both CLI and Model Context Protocol (MCP) interfaces."
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
@@ -21,6 +20,16 @@ dependencies = [
     "mcp>=1.10.0"
 ]
 
+[project.urls]
+"Homepage" = "https://github.com/varlabz/searxng-mcp"
+"Bug Tracker" = "https://github.com/varlabz/searxng-mcp/issues"
+
 [project.scripts]
-searxng-cli = "searxng.cli:main"
 searxng-mcp = "searxng.mcp:main"
+searxng-cli = "searxng.cli:main"
+
+[tool.setuptools]
+packages = ["searxng"]
+
+[tool.setuptools.dynamic]
+version = {attr = "searxng.__version__"}

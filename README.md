@@ -65,7 +65,7 @@ Add this to your MCP client configuration for VS Code or other clients (see clie
     "servers": {
       "searxng": {
         "command": "uvx",
-        "args": ["--from", "git+https://github.com/varlabz/searxng-mcp", "searxng-mcp"]
+        "args": ["--from", "git+https://github.com/varlabz/searxng-mcp", "searxng-mcp"],
         "env": {
           "SEARX_HOST": "http://localhost:8888"
         }
