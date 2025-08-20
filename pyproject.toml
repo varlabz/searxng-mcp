@@ -27,8 +27,8 @@ dependencies = [
 "Bug Tracker" = "https://github.com/varlabz/searxng-mcp/issues"
 
 [project.scripts]
-searxng-mcp = "searxng.mcp:main"
-searxng-cli = "searxng.cli:main"
+mcp-server = "searxng.mcp:main"
+cli = "searxng.cli:main"
 
 [tool.setuptools]
 packages = ["searxng"]
