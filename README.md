@@ -1,6 +1,6 @@
-# SearXNG MCP / CLI
+# SearXNG MCP / CLI for local hosting SearXNG search engine
 
-A Model Context Protocol (MCP) server and CLI tool for performing web searches using SearxNG.
+A Model Context Protocol (MCP) server and CLI tool for performing web searches using SearXNG.
 
 ## MCP Server Configuration
 
