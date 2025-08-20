@@ -82,6 +82,47 @@ source ~/.bashrc  # or ~/.zshrc
 - `--categories`: Comma-separated list of search categories to use.
 - `--time-range`: Time range for search results (day, month, or year).
 
+```bash
+$ sx --help
+usage: cli [-h] [--host HOST] [--num-results NUM_RESULTS] [--engines ENGINES] [--categories CATEGORIES] [--time-range {day,month,year}] query [query ...]
+
+Search using SearXNG
+
+positional arguments:
+  query                 The search query
+
+options:
+  -h, --help            show this help message and exit
+  --host HOST           SearxNG host URL (default: http://localhost:8888)
+  --num-results NUM_RESULTS
+                        Number of results to return (default: 10)
+  --engines ENGINES     Comma-separated list of search engines to use
+  --categories CATEGORIES
+                        Comma-separated list of categories to use
+  --time-range {day,month,year}
+                        Time range for search results (optional, allowed: day, month, year)
+
+Examples:
+  cli "python programming"
+  cli "climate change" --engines "google,duckduckgo"
+  cli "latest news" --categories "news" --num-results 5
+
+Available categories:
+  general, images, videos, news, map, music, it, science, files, social_media
+
+Engines by category:
+  general: google, bing, duckduckgo, startpage, brave, yahoo, yandex, mojeek, qwant, presearch
+  images: google_images, bing_images, duckduckgo_extra, unsplash, pixabay, flickr, imgur, pinterest, wallhaven, wikicommons
+  videos: youtube_noapi, vimeo, dailymotion, peertube, rumble, odysee, bilibili, niconico
+  news: google_news, bing_news, yahoo_news, reuters, bbc, cnn, guardian, reddit, qwant, tagesschau
+  map: openstreetmap, apple_maps, photon
+  music: genius, bandcamp, deezer, mixcloud, soundcloud, youtube_noapi, radio_browser
+  it: github, gitlab, stackoverflow, pypi, npm, crates, docker_hub, metacpan, huggingface
+  science: arxiv, pubmed, crossref, semantic_scholar, google_scholar, mediawiki
+  files: apkmirror, apple_app_store, fdroid, google_play, piratebay, zlibrary, annas_archive, nyaa
+  social_media: reddit, lemmy, mastodon, 9gag, tootfinder
+```
+
 ### Examples
 
 ```bash
@@ -95,30 +136,3 @@ sx "python programming" --engines "google,duckduckgo"
 sx "latest news" --categories "news" --time-range "day"
 ```
 
-## Available Categories
-
-- general
-- images
-- videos
-- news
-- map
-- music
-- it
-- science
-- files
-- social_media
-
-## Available Engines by Category
-
-| Category      | Engines                                                                                                                            |
-|---------------|------------------------------------------------------------------------------------------------------------------------------------|
-| general       | google, bing, duckduckgo, startpage, brave, yahoo, yandex, mojeek, qwant, presearch                                                 |
-| images        | google_images, bing_images, duckduckgo_extra, unsplash, pixabay, flickr, imgur, pinterest, wallhaven, wikicommons                      |
-| videos        | youtube_noapi, vimeo, dailymotion, peertube, rumble, odysee, bilibili, niconico                                                      |
-| news          | google_news, bing_news, yahoo_news, reuters, bbc, cnn, guardian, reddit, qwant, tagesschau                                           |
-| map           | openstreetmap, apple_maps, photon                                                                                                  |
-| music         | genius, bandcamp, deezer, mixcloud, soundcloud, youtube_noapi, radio_browser                                                         |
-| it            | github, gitlab, stackoverflow, pypi, npm, crates, docker_hub, metacpan, huggingface                                                 |
-| science       | arxiv, pubmed, crossref, semantic_scholar, google_scholar, mediawiki                                                               |
-| files         | apkmirror, apple_app_store, fdroid, google_play, piratebay, zlibrary, annas_archive, nyaa                                            |
-| social_media  | reddit, lemmy, mastodon, 9gag, tootfinder                                                                                          |
