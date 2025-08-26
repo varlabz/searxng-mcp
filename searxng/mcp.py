@@ -14,6 +14,7 @@ from .search import searx_search
 # Create an MCP server
 mcp = FastMCP(
     "SearXNG Search",
+    log_level="ERROR",
 )
 
 # Define models for structured output
