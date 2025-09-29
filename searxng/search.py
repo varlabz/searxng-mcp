@@ -84,14 +84,16 @@ async def searx_search(
         results = await searx.aresults(**search_params)
         
         # Handle empty result case
-        if len(results) == 1 and "Result" in results[0]:
+        if len(results) == 0:
             return []
 
         return [
             {
                 "title": r.get("title", ""),
                 "url": r.get("link", ""),
-                "content": r.get("snippet", "")
+                "content": r.get("snippet", ""),
+                "engines": r.get("engines", []),
+                "category": r.get("category", ""),
             }
             for r in results
         ]

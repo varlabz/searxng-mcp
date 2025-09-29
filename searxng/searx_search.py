@@ -474,9 +474,12 @@ class SearxSearchWrapper(BaseModel):
             params["q"] += " " + query_suffix
         if isinstance(engines, list) and len(engines) > 0:
             params["engines"] = ",".join(engines)
-        results = (await self._asearx_api_query(params)).results[:num_results]
+        results = (await self._asearx_api_query(params)).results
+        # filter out result if url is not empty
+        results = [result for result in results if result["url"]]
+        results = results[:num_results]
         if len(results) == 0:
-            return [{"Result": "No good Search Result was found"}]
+            return []
 
         return [
             {
