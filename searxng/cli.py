@@ -104,9 +104,9 @@ async def main_async():
     else:
         for i, result in enumerate(results, 1):
             print(f"{i}. {result['title']}")
-            print(f"   URL: {result['url']}")
-            if result['content']:
-                print(f"   {result['content']}")
+            print(f"    URL: {result['url']}")
+            print(f"Content: {result['content']}")
+            print(f"Engines: {result['engines']}")
             print()
         
         print(f"Found {len(results)} results.")
