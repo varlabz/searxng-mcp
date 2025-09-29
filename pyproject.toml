@@ -10,7 +10,7 @@ authors = [
 ]
 description = "A tool for performing searches using SearXNG, with both CLI and Model Context Protocol (MCP) interfaces."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",

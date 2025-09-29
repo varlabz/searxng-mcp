@@ -10,8 +10,8 @@ from .searx_search import SearxSearchWrapper
 
 # Common SearXNG categories
 CATEGORIES = [
-    "general", "images", "videos", "news", "map", "music",
-    "it", "science", "files", "social_media"
+    "web", "images", "videos", "news", "map", "music",
+    "it", "science", "files", "social media"
 ]
 
 # Common SearXNG engines grouped by category

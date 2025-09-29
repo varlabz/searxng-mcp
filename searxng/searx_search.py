@@ -143,7 +143,7 @@ from pydantic import (
 
 
 def _get_default_params() -> dict:
-    return {"language": "en", "format": "json"}
+    return {"language": "en", "format": "json", "categories": ["web"], }
 
 
 class SearxResults(dict):
